@@ -235,7 +235,7 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
                 if($pipe){
                     $productAttributes .= '|';
                 }
-                if(in_array($attribute->getAttributeCode(), $attributesToSend) && is_string($attribute->getFrontend()->getValue($product)) && $attribute->getFrontend()->getValue($product) != ' '){
+                if(in_array($attribute->getAttributeCode(), $attributesToSend) && is_string($attribute->getFrontend()->getValue($product)) && trim($attribute->getFrontend()->getValue($product)) != ''){
                     $productAttributes .= $attribute->getAttributeCode().':'.$attribute->getFrontend()->getValue($product);
                     $pipe = true;
                 }else{
