@@ -333,7 +333,10 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>1</show_in_store>
                             <can_be_empty>1</can_be_empty>
-                            <comment>All selected attributes will be sent with the orders to MailChimp</comment>
+                            <comment>All selected attributes will be sent on the product name to MailChimp for segmentation purposes</comment>
+                            <depends>
+                                <active separator=",">1,2,3</active>
+                            </depends>
                         </attributes>
                     </fields>
                 </ecommerce360>

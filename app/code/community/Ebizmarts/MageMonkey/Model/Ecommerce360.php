@@ -235,9 +235,7 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
                 if($pipe){
                     $productAttributes .= '|';
                 }
-                if(in_array($attribute->getAttributeCode(), $attributesToSend) && is_string($attribute->getFrontend()->getValue($product))){
-                    Mage::log($attribute->getAttributeCode(), null, 'santiago.log', true);
-                    Mage::log($attribute->getFrontend()->getValue($product), null, 'santiago.log', true);
+                if(in_array($attribute->getAttributeCode(), $attributesToSend) && is_string($attribute->getFrontend()->getValue($product)) && $attribute->getFrontend()->getValue($product) != ' '){
                     $productAttributes .= $attribute->getAttributeCode().':'.$attribute->getFrontend()->getValue($product);
                     $pipe = true;
                 }else{
@@ -317,7 +315,7 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
     public function autoExportJobs($storeId){
         $allow_sent = false;
         //Get status options selected in the Configuration
-        $states = explode(',', Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ACTIVE, $storeId));
+        $states = explode(',', Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ORDER_STATUS, $storeId));
         $max = Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ORDER_MAX, $storeId);
         $count = 0;
         foreach($states as $state) {
