@@ -92,9 +92,10 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
 	 */
 	public function run(Varien_Event_Observer $observer)
 	{
+        $storeId = Mage::app()->getStore()->getId();
         $order = $observer->getEvent()->getOrder();
 		if ( ( ($this->_getCampaignCookie() &&
-				$this->_getEmailCookie()) || Mage::helper('monkey')->config('ecommerce360') == 2 ) &&
+				$this->_getEmailCookie()) || Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ACTIVE, $storeId) == 2 ) &&
 					$this->isActive() ){
 			$this->logSale($order);
 		}
@@ -226,6 +227,27 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
 			$mcitem['sku'] = $product->getSku();
             $mcitem['product_name'] = $product->getName();
 
+            $attributesToSend = explode(',', Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ATTRIBUTES, $storeId));
+            $attributes = $product->getAttributes();
+            $productAttributes = '';
+            $pipe = false;
+            foreach($attributes as $attribute){
+                if($pipe){
+                    $productAttributes .= '|';
+                }
+                if(in_array($attribute->getAttributeCode(), $attributesToSend) && is_string($attribute->getFrontend()->getValue($product))){
+                    Mage::log($attribute->getAttributeCode(), null, 'santiago.log', true);
+                    Mage::log($attribute->getFrontend()->getValue($product), null, 'santiago.log', true);
+                    $productAttributes .= $attribute->getAttributeCode().':'.$attribute->getFrontend()->getValue($product);
+                    $pipe = true;
+                }else{
+                    $pipe = false;
+                }
+            }
+            if($productAttributes){
+                $mcitem['product_name'] .= '['.$productAttributes.']';
+            }
+
             $names = array();
             $cat_ids = $product->getCategoryIds();
 
@@ -295,8 +317,8 @@ class Ebizmarts_MageMonkey_Model_Ecommerce360
     public function autoExportJobs($storeId){
         $allow_sent = false;
         //Get status options selected in the Configuration
-        $states = explode(',', Mage::helper('monkey')->config('order_status',$storeId));
-        $max = Mage::getStoreConfig("monkey/general/order_max", $storeId);
+        $states = explode(',', Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ACTIVE, $storeId));
+        $max = Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ORDER_MAX, $storeId);
         $count = 0;
         foreach($states as $state) {
             if($max == $count){

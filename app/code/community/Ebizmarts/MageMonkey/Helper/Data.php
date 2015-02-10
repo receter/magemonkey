@@ -248,7 +248,8 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 	 */
 	public function ecommerce360Active()
 	{
-		return (bool)($this->config('ecommerce360') != 0);
+        $storeId = Mage::app()->getStore()->getId();
+		return (bool)(Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ACTIVE, $storeId) != 0);
 	}
 
 	/**

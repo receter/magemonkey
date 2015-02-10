@@ -422,7 +422,7 @@ class Ebizmarts_MageMonkey_Model_Cron
 	{
         $allStores = Mage::app()->getStores();
         foreach($allStores as $storeId => $val) {
-            if (Mage::getStoreConfig("monkey/general/ecommerce360",$storeId) == 3 && Mage::getModel('monkey/ecommerce360')->isActive()){
+            if (Mage::getStoreConfig(Ebizmarts_MageMonkey_Model_Config::ECOMMERCE360_ACTIVE,$storeId) == 3 && Mage::getModel('monkey/ecommerce360')->isActive()){
                 Mage::getModel('monkey/ecommerce360')->autoExportJobs($storeId);
             }
         }
