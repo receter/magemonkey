@@ -260,6 +260,7 @@ class Ebizmarts_AbandonedCart_Model_Cron
                             $vars = array('quote' => $quote, 'url' => $url, 'unsubscribeurl' => $unsubscribeUrl, 'tags' => array($mandrillTag));
 
                         }
+
                         Mage::app()->getTranslator()->init('frontend', true);
                         $translate = Mage::getSingleton('core/translate');
                         Mage::log($templateId, null, 'santiago.log', true);
@@ -319,6 +320,10 @@ class Ebizmarts_AbandonedCart_Model_Cron
             } else {
                 $couponcode = Mage::getStoreConfig(Ebizmarts_AbandonedCart_Model_Config::POPUP_COUPON_CODE);
                 $vars = array('couponcode' => $couponcode, 'name' => $pseudoName, 'tags' => array($tags));
+            }
+            $tbtPoints = Mage::helper('ebizmarts_abandonedcart')->getTBTPoints($customer->getId());
+            if($tbtPoints){
+                $vars['sweetMonkey'] = $tbtPoints;
             }
             $translate = Mage::getSingleton('core/translate');
             Mage::log('sendTransactional coupon popup', null, 'santiago.log', true);
