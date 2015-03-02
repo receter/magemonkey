@@ -20,6 +20,9 @@
                                 {{depend discount}}
                                 and obtain a discount of {{var discount}} only until {{var todate}}
                                 {{/depend}}
+                                {{if points >= {{var pointsMin}}}}
+                                You currently have {{var points}} points available.
+                                {{/if}}
                                 <br>You can access your cart <a href="{{var url}}" style="color:#1E7EC8;">here</a>.
                                 <br>If you have any questions about your order please contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
                             </p>

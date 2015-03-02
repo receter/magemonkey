@@ -20,6 +20,9 @@
                                 {{depend discount}}
                                 and you will obtain a discount of {{var discount}} only until {{var todate}}
                                 {{/depend}}
+                                {{if points >= {{var pointsMin}}}}
+                                You currently have {{var points}} points available.
+                                {{/if}}
                             </p>
                         </td>
                     </tr>

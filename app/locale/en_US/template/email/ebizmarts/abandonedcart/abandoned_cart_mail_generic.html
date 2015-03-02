@@ -20,6 +20,9 @@
                                 {{depend discount}}
                                 This info will only be displayed if 'discount:' is set as a label for coupon
                                 {{/depend}}
+                                {{if points >= {{var pointsMin}}}}
+                                You currently have {{var points}} points available.
+                                {{/if}}
                             </p>
                     </tr>
                     <tr>

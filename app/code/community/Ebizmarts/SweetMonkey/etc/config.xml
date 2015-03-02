@@ -123,6 +123,7 @@
 					<points_email_template>sweetmonkey_warning_email_points</points_email_template>
 					<points_email_identity>general</points_email_identity>
 				</warning>
+                <email_points>10</email_points>
             </general>
     	</sweetmonkey>
     </default>

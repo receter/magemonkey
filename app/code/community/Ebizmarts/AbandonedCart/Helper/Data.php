@@ -74,13 +74,12 @@ class Ebizmarts_AbandonedCart_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getTBTPoints($customerId)
     {
-
         $tbtCustomer = Mage::getModel('rewards/customer')->load($customerId);
 
         //Point balance
-        $tbtVars['PTS'] = $tbtCustomer->getPointsSummary();
+        $tbtVars['pts'] = $tbtCustomer->getPointsSummary();
 
-        $tbtVars['POINTS'] = $tbtCustomer->getUsablePointsBalance(1);
+        $tbtVars['points'] = $tbtCustomer->getUsablePointsBalance(1);
 
         //Earn and Spent points
         $lastTransfers = $tbtCustomer->getTransfers()
@@ -106,17 +105,17 @@ class Ebizmarts_AbandonedCart_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         if ($earn) {
-            $tbtVars['PTSEARN'] = $earn;
+            $tbtVars['ptsearn'] = $earn;
         }
         if ($spent) {
-            $tbtVars['PTSSPENT'] = $spent;
+            $tbtVars['ptsspent'] = $spent;
         }
 
         //Expiration Points
         $val = Mage::getSingleton('rewards/expiry')
             ->getExpiryDate($tbtCustomer);
         if ($val) {
-            $tbtVars['PTSEXP'] = $val;
+            $tbtVars['ptsexp'] = $val;
         }
         return $tbtVars;
     }
