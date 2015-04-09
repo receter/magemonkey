@@ -1,5 +1,5 @@
 <_>
-   <form_key>uvOydC1ftCRw4L15</form_key>
+   <form_key>0upLyjLJ0i33N9ZL</form_key>
    <name>Ebizmarts_MageMonkey</name>
    <channel>community</channel>
    <version_ids>
@@ -10,19 +10,30 @@
    <description>Full MailChimp integration, automatic webhooks, multiple lists, interest groups</description>
    <license>OSL v3.0</license>
    <license_uri>http://www.opensource.org/licenses/osl-3.0.php</license_uri>
-   <version>1.1.24</version>
+   <version>1.1.29</version>
    <stability>stable</stability>
-   <notes>
-       1.1.25
-       --------
-       Fixed compatibility with before versions of PHP 5.4.
+   <notes>1.1.29
+--------
 
-       Send orders to MailChimp only if related customer is already there.
+-Integrated module Sweet Monkey to add Sweet Tooth loyalty points into the mailing system.
 
-       Fixed Mandrill headers when not defined.
+-A/B Testing for Abandoned Carts.
 
-       Fixed database error when table prefix enabled.
-   </notes>
+-Added new option on Mailchimp&apos;s configuration to send Magento Newsletter confirmation emails.
+
+-Abandoned Cart cron runs every 5 minutes to send the Email Catcher coupon as soon as possible.
+
+-Email Catcher showing 2 times as minimum fixed to be shown only once if set to 1.
+
+-Fixed customer group filter on Abandoned Cart.
+
+-New Order Autoresponder can be sent a configured amount of days after a change of status.
+
+-Typo error on Fifth email title.
+
+-tabs_lonks_over_bg.gif javascript error fixed.
+
+-Show Ebizmarts logo via https on MailChimp&apos;s module.</notes>
    <authors>
       <name>
          <name>Ebizmarts Development Team</name>
@@ -51,7 +62,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                                                  </files>
+            <files>                                                                                                     </files>
          </files>
       </package>
       <extension>
@@ -102,6 +113,11 @@
          <target>mageskin</target>
          <target>magelocale</target>
          <target>magelocale</target>
+         <target>magecommunity</target>
+         <target>mageetc</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magedesign</target>
       </target>
       <path>
          <path/>
@@ -138,6 +154,11 @@
          <path>adminhtml/default/default/ebizmarts</path>
          <path>en_US/template/email/ebizmarts/autoresponder</path>
          <path>en_US/Ebizmarts_Autoresponder.csv</path>
+         <path>Ebizmarts/SweetMonkey</path>
+         <path>modules/Ebizmarts_SweetMonkey.xml</path>
+         <path>en_US/template/email/sweetmonkey</path>
+         <path>en_US/Ebizmarts_SweetMonkey.csv</path>
+         <path>adminhtml/default/default/template/sweetmonkey</path>
       </path>
       <type>
          <type>file</type>
@@ -174,6 +195,11 @@
          <type>dir</type>
          <type>dir</type>
          <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
       </type>
       <include>
          <include/>
@@ -210,8 +236,18 @@
          <include/>
          <include/>
          <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
       </include>
       <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
          <ignore/>
          <ignore/>
          <ignore/>

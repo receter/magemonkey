@@ -478,7 +478,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <can_be_empty>0</can_be_empty>
-                            <comment><![CDATA[Amount]]></comment>
                             <depends>
                                 <create>1</create>
                                 <automatic>2</automatic>
@@ -902,7 +901,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <can_be_empty>0</can_be_empty>
-                            <comment><![CDATA[Amount]]></comment>
                             <depends>
                                 <popup_coupon>1</popup_coupon>
                                 <popup_automatic>2</popup_automatic>

@@ -644,7 +644,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <can_be_empty>0</can_be_empty>
-                            <comment><![CDATA[Amount]]></comment>
                             <depends>
                                 <active>1</active>
                                 <coupon>1</coupon>
@@ -874,7 +873,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <can_be_empty>0</can_be_empty>
-                            <comment><![CDATA[Amount]]></comment>
                             <depends>
                                 <active>1</active>
                                 <coupon>1</coupon>
