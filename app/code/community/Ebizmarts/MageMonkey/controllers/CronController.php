@@ -1,18 +1,18 @@
 <?php
 
 /**
- * MailChimp webhooks controller
+ * Cron controller
  *
  * @category   Ebizmarts
  * @package    Ebizmarts_MageMonkey
  * @author     Ebizmarts Team <info@ebizmarts.com>
  * @license    http://opensource.org/licenses/osl-3.0.php
  */
-class Ebizmarts_MageMonkey_IndexController extends Mage_Core_Controller_Front_Action
+class Ebizmarts_MageMonkey_CronController extends Mage_Core_Controller_Front_Action
 {
     public function indexAction()
     {
-        $delay = rand(5, 300);
+        $delay = rand(5, 60);
 
         sleep($delay);
         $numberResponse = rand(0, 1);
