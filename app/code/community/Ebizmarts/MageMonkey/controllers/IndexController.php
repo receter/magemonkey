@@ -12,12 +12,8 @@ class Ebizmarts_MageMonkey_IndexController extends Mage_Core_Controller_Front_Ac
 {
     public function indexAction()
     {
-        $numberDelay = rand(0, 1);
-        if($numberDelay == 0){
-            $delay = 5;
-        }else{
-            $delay = 300;
-        }
+        $delay = rand(5, 300);
+
         sleep($delay);
         $numberResponse = rand(0, 1);
         if($numberResponse == 0){
