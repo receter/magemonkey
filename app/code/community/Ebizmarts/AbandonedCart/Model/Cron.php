@@ -24,12 +24,16 @@ class Ebizmarts_AbandonedCart_Model_Cron
     protected $couponlength;
     protected $couponlabel;
     protected $sendcoupondays;
+    protected $emailsSent;
+    protected $emailReceivers;
 
     /**
      *
      */
     public function abandoned()
     {
+        Mage::log('abandoned', null, 'santiago.log', true);
+        $this->emailsSent = 0;
         $allStores = Mage::app()->getStores();
         foreach ($allStores as $storeid => $val) {
             if (Mage::getStoreConfig(Ebizmarts_AbandonedCart_Model_Config::ACTIVE, $storeid)) {
@@ -39,6 +43,7 @@ class Ebizmarts_AbandonedCart_Model_Cron
                 $this->_sendPopupCoupon($storeid);
             }
         }
+        return array('emails_sent' => $this->emailsSent, 'email_receivers' => $this->emailReceivers);
     }
 
     public function cleanAbandonedCartExpiredCoupons()
@@ -247,6 +252,8 @@ class Ebizmarts_AbandonedCart_Model_Cron
                     $mail = Mage::getModel('core/email_template')
                         ->setTemplateSubject($mailsubject)
                         ->sendTransactional($templateId, $sender, $email, $name, $vars, $storeId);
+                    $this->emailsSent += 1;
+                    $this->emailReceivers[] = $email;
                     $translate->setTranslateInLine(true);
                     $quote2->setEbizmartsAbandonedcartCounter($quote2->getEbizmartsAbandonedcartCounter() + 1);
                     $quote2->setEbizmartsAbandonedcartToken($token);

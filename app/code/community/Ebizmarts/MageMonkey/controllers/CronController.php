@@ -12,18 +12,26 @@ class Ebizmarts_MageMonkey_CronController extends Mage_Core_Controller_Front_Act
 {
     public function indexAction()
     {
-        $delay = rand(5, 60);
-
-        sleep($delay);
+        $before = strtotime(now());
+        Mage::log($before, null, 'santiago.log', true);
+        $cron = Mage::getModel('ebizmarts_abandonedcart/cron');
+        $values = $cron->abandoned();
+        Mage::log($values, null, 'santiago.log', true);
+        //$delay = rand(5, 60);
+        //sleep($delay);
         $numberResponse = rand(0, 1);
         if($numberResponse == 0){
             $responseCode = 500;
         }else{
             $responseCode = 200;
         }
+        $after = strtotime(now());
+        Mage::log($after, null, 'santiago.log', true);
+        $delay = ($after - $before);
         $data = array();
         $data['code'] = $responseCode;
         $data['delay'] = $delay;
+        $data = array_merge($data, $values);
 
         $this->getResponse()
             ->setHeader('Content-Type', 'application/json', true)
